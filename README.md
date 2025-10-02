@@ -20,5 +20,5 @@
    ```
    Model trained with accuracy: <wynik-w-procentach>%
    ```
-
+5. Upwniej się, że wszystko jest urchamiane w GitHub Action.
 ---
