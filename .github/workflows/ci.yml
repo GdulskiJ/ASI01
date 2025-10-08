@@ -29,7 +29,7 @@ jobs:
       # Krok 3: Uruchom trenowanie modelu
       - name: Train model
         run: |
-           python train.py | tee output.log
+           python s27753.py | tee output.log
            grep "Model trained with accuracy" output.log > accuracy.txt
       # Krok 4: Wyświetl wynik (accuracy)
       - name: Display training result
