@@ -26,11 +26,14 @@ jobs:
         run: |
             python -m pip install --upgrade pip
             pip install -r requirements.txt
-      # Krok 3: Uruchom trenowanie modelu
-      - name: Train model
+      - name: Generate Data
         run: |
-           python s27753.py | tee output.log
+          python generator_danych.py
+
+      - name: Clean Data
+        run: |
+           python clean_data.py | tee output.log
            grep "Model trained with accuracy" output.log > accuracy.txt
       # Krok 4: Wyświetl wynik (accuracy)
-      - name: Display training result
+      - name: Display result
         run: cat accuracy.txt

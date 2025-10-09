@@ -13,18 +13,21 @@ logging.info("Rozpoczęcie przetwarzania danych")
 df = pd.read_csv("data_student_27753.csv")
 logging.info(f"Dane wczytane. Liczba wierszy: {df.shape[0]}, kolumn: {df.shape[1]}")
 
-print(df)
-print(df.columns)
-print(df.info())
-print(df.describe())
-print(df.isnull().sum())
-print(df.shape)
+# print(df)
+# print(df.columns)
+# print(df.info())
+# print(df.describe())
+# print(df.isnull().sum())
+# print(df.shape)
 initial_rows = df.shape[0]
+initial_cells = df.shape[0] * df.shape[1]
 df = df.dropna(subset=['Płeć'])
 removed_rows = initial_rows - df.shape[0]
+removed_percent = removed_rows / initial_rows * 100
+
 logging.info(f"Liczba usuniętych wierszy (brak płci): {removed_rows}")
 
-print(df.isnull().sum())
+# print(df.isnull().sum())
 nulls_before = df.isnull().sum()
 
 
@@ -54,11 +57,15 @@ df['Cel Podróży'] = df['Cel Podróży'].fillna('Inne')
 
 
 
-print(df.shape)
-print(df.isnull().sum())
+# print(df.shape)
+# print(df.isnull().sum())
 nulls_after = df.isnull().sum()
 filled = nulls_before - nulls_after
+filled_percent = filled.sum() / (initial_cells-removed_rows*df.shape[1]) * 100
 logging.info(f"Liczba wypełnionych danych w kolumnach: \n{filled}")
 
 logging.info(f"Liczba wierszy po czyszczeniu: {df.shape[0]}")
 logging.info("Zakończenie przetwarzania danych")
+
+print(f"Procent danych, które zostały zmienione w wyniku uzupełniania braków: {filled_percent:.2f}%")
+print(f"Procent danych, które zostały usunięte w wyniku czyszczenia: {removed_percent:.2f}%")
