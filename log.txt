@@ -1,0 +1,14 @@
+INFO:root:Rozpoczêcie przetwarzania danych
+INFO:root:Dane wczytane. Liczba wierszy: 1000, kolumn: 7
+INFO:root:Liczba usuniêtych wierszy (brak p³ci): 23
+INFO:root:Liczba wype³nionych danych w kolumnach: 
+P³eæ                        0
+Wiek                        8
+Wykszta³cenie              15
+Œrednie Zarobki            14
+Czas Pocz¹tkowy Podró¿y     5
+Czas Koñcowy Podró¿y        8
+Cel Podró¿y                12
+dtype: int64
+INFO:root:Liczba wierszy po czyszczeniu: 977
+INFO:root:Zakoñczenie przetwarzania danych
