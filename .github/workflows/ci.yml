@@ -2,7 +2,6 @@
 
 name: CI/CD Pipeline
 
-# Wykonuj akcje przy każdym pushu do gałęzi main
 on:
   push:
     branches:
@@ -13,10 +12,9 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
-      # Krok 1: Checkout repozytorium
       - name: Checkout repository
         uses: actions/checkout@v4
-      # Krok 2: Zainstaluj Python i zależności
+
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
@@ -35,6 +33,5 @@ jobs:
            python clean_data.py | tee output.log
            grep "Procent danych" output.log > report.txt || true
 
-      # Krok 4: Wyświetl wynik (accuracy)
       - name: Display result
         run: cat report.txt
