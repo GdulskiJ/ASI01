@@ -1,6 +1,6 @@
 # .github/workflows/ci.yml
 
-name: CI/CD Pipeline for ML Model Training
+name: CI/CD Pipeline
 
 # Wykonuj akcje przy każdym pushu do gałęzi main
 on:
@@ -33,7 +33,8 @@ jobs:
       - name: Clean Data
         run: |
            python clean_data.py | tee output.log
-           grep "Model trained with accuracy" output.log > accuracy.txt
+           grep "Procent danych" output.log > report.txt || true
+
       # Krok 4: Wyświetl wynik (accuracy)
       - name: Display result
-        run: cat accuracy.txt
+        run: cat report.txt
