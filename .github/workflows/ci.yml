@@ -28,7 +28,7 @@ jobs:
             pip install -r requirements.txt
       - name: Generate Data
         run: |
-          python generator_danych.py
+          python generator_danych.py -s s27753
 
       - name: Clean Data
         run: |
