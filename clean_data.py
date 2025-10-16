@@ -1,5 +1,5 @@
 import logging
-
+from sklearn.preprocessing import MinMaxScaler
 import pandas as pd
 logging.basicConfig(
     level=logging.INFO,  # poziom logowania
@@ -54,6 +54,21 @@ fill_time_mean('Czas Końcowy Podróży')
 
 df['Cel Podróży'] = df['Cel Podróży'].fillna('Inne')
 
+
+
+numeric_cols = df.select_dtypes(include=['int64', 'float64']).columns
+
+scaler = MinMaxScaler(feature_range=(0, 1))
+df[numeric_cols] = scaler.fit_transform(df[numeric_cols])
+
+
+df['Płeć'] = df['Płeć'].map({'Kobieta': 0, 'Mężczyzna': 1})
+df['Wykształcenie'] = df['Wykształcenie'].map({'Podstawowe': 0, 'Średnie': 1, 'Wyższe': 2})
+df['Cel Podróży'] = df['Cel Podróży'].map({'Edukacja': 0, 'Inne': 1, 'Praca': 2, 'Rozrywka': 3, 'Zakupy': 4})
+
+
+logging.info(f"Zestandaryzowano kolumny: {list(numeric_cols)}")
+logging.info("Zakończenie standaryzacji danych")
 
 
 
